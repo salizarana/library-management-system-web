@@ -1,0 +1,80 @@
+<h3>Edit Book</h3>
+<form #bookForm="ngForm">
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Title"
+        name="title"
+        [(ngModel)]="formObject.title"
+        required
+      />
+      <mat-error *ngIf="!formObject.title">Title is required</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Author</mat-label>
+      <input
+        matInput
+        placeholder="Author"
+        name="author"
+        [(ngModel)]="formObject.author"
+        required
+      />
+      <mat-error *ngIf="!formObject.author">Author is required</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Genre</mat-label>
+      <input
+        matInput
+        placeholder="Genre"
+        name="genre"
+        [(ngModel)]="formObject.genre"
+        required
+      />
+      <mat-error *ngIf="!formObject.genre">Genre is required</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Quantity</mat-label>
+      <input
+        matInput
+        placeholder="Quantity"
+        name="quantity"
+        [(ngModel)]="formObject.quantity"
+        required
+        pattern="^[0-9]*$"
+      />
+
+      <mat-error *ngIf="!formObject.quantity">Quantity is required</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Available Quantity</mat-label>
+      <input
+        matInput
+        placeholder="Available Quantity"
+        name="availableQuantity"
+        [(ngModel)]="formObject.availableQuantity"
+        required
+        pattern="^[0-9]*$"
+      />
+      <mat-error *ngIf="!formObject.availableQuantity"
+        >Available Quantity is required</mat-error
+      >
+    </mat-form-field>
+  </p>
+</form>
+
+<div class="btn">
+  <button class="primary-btn" (click)="save()" [disabled]="!bookForm.valid">
+    Save
+  </button>
+  <button class="secondary-btn" [mat-dialog-close]>close</button>
+</div>

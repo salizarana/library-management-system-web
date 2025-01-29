@@ -1,0 +1,66 @@
+<h3>Edit User Details</h3>
+<form>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>User</mat-label>
+      <input
+        matInput
+        placeholder="User"
+        name="name"
+        [(ngModel)]="formObject.name"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="Email"
+        name="emailAddress"
+        [(ngModel)]="formObject.emailAddress"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Phone</mat-label>
+      <input
+        matInput
+        placeholder="Phone"
+        name="phone"
+        [(ngModel)]="formObject.phone"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Username</mat-label>
+      <input
+        matInput
+        placeholder="Username"
+        name="userName"
+        [(ngModel)]="formObject.userName"
+        [disabled]="true"
+      />
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        placeholder="Password"
+        name="password"
+        [(ngModel)]="formObject.password"
+      />
+    </mat-form-field>
+  </p>
+</form>
+
+<!-- {{ formObject | json }} -->
+
+<div class="btn">
+  <button class="primary-btn" (click)="save()">Save</button>
+  <button class="secondary-btn" [mat-dialog-close]>close</button>
+</div>

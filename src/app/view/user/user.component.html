@@ -1,0 +1,72 @@
+<h3>Users</h3>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      {{ i + 1 }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="userId">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let element">{{ element.userId }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="userName">
+    <th mat-header-cell *matHeaderCellDef>Username</th>
+    <td mat-cell *matCellDef="let element">{{ element.userName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="membershipType">
+    <th mat-header-cell *matHeaderCellDef>Membership Type</th>
+    <td mat-cell *matCellDef="let element">{{ element.membershipType }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="membershipDaysLeft">
+    <th mat-header-cell *matHeaderCellDef>Remaining Days</th>
+    <td mat-cell *matCellDef="let element">{{ element.membershipDaysLeft }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="currentBorrowedBooks">
+    <th mat-header-cell *matHeaderCellDef>Currently Borrowed</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.currentBorrowedBooks }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="availableBorrow">
+    <th mat-header-cell *matHeaderCellDef>Available Borrow</th>
+    <td mat-cell *matCellDef="let element">{{ element.availableBorrow }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        mat-icon-button
+        color="primary"
+        class="action-button"
+        (click)="view(element)"
+      >
+        <mat-icon matTooltip="View Details">visibility</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="edit(element)"
+        class="action-button"
+      >
+        <mat-icon matTooltip="Edit User">edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

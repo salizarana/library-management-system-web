@@ -1,0 +1,82 @@
+<h3>Books Issued</h3>
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" #input />
+</mat-form-field> -->
+<div mat-sort>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.position }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="borrowId">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.borrowId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Customer Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Book</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+    <ng-container matColumnDef="borrowedDate">
+      <th mat-header-cell *matHeaderCellDef>Borrowed Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.borrowedDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="returnDueDate">
+      <th mat-header-cell *matHeaderCellDef>Return Due Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.returnDueDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="returnedDate">
+      <th mat-header-cell *matHeaderCellDef>Returned Date</th>
+      <td mat-cell *matCellDef="let element">{{ element.returnedDate }}</td>
+    </ng-container>
+    <ng-container matColumnDef="charge">
+      <th mat-header-cell *matHeaderCellDef>Charge</th>
+      <td mat-cell *matCellDef="let element">Rs.{{ element.charge }}</td>
+    </ng-container>
+    <ng-container matColumnDef="paymentId">
+      <th mat-header-cell *matHeaderCellDef>Payment Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.paymentId }}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="warn"
+          (click)="
+            return(
+              element.borrowId,
+              element.userId,
+              element.bookId,
+              element.returnDueDate
+            )
+          "
+          class="primary-btn"
+          [disabled]="element.returnedDate"
+        >
+          Return
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter</td>
+    </tr>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      showFirstLastButtons
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </table>
+</div>

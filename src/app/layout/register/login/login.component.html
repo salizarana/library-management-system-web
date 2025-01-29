@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="img">
+    <img src="assets/img/login1.jpg" />
+  </div>
+  <div class="login">
+    <div class="form">
+      <h2>Login</h2>
+
+      <div>
+        <form [formGroup]="formObject" (ngSubmit)="save()">
+          <p>
+            <mat-form-field class="full-width">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Username"
+                formControlName="userName"
+                required
+              />
+              <mat-error *ngIf="formObject.get('userName')?.invalid">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="full-width">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+                required
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="togglePasswordVisibility($event)"
+                [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error *ngIf="formObject.get('password')?.invalid">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+          </p>
+          <button mat-flat-button type="submit" class="primary-btn">
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="snackbar"></div>
+  </div>
+</div>

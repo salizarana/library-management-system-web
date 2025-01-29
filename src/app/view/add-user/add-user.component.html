@@ -1,0 +1,183 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
+</button> -->
+<div class="add-user">
+  <h3 class="title">Add New User</h3>
+  <mat-stepper [linear]="!isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Basic Information</ng-template>
+        <p>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              required
+            />
+            <mat-error *ngIf="firstFormGroup.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="Email"
+              formControlName="emailAddress"
+              required
+            />
+            <mat-error
+              *ngIf="firstFormGroup.get('emailAddress')?.hasError('required')"
+            >
+              Email is required
+            </mat-error>
+            <mat-error
+              *ngIf="firstFormGroup.get('emailAddress')?.hasError('email')"
+            >
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Mobile</mat-label>
+            <input
+              matInput
+              placeholder="Mobile"
+              formControlName="phone"
+              maxlength="10"
+              required
+            />
+            <mat-error
+              *ngIf="firstFormGroup.get('phone')?.hasError('required')"
+            >
+              Mobile number is required
+            </mat-error>
+            <mat-error *ngIf="firstFormGroup.get('phone')?.hasError('pattern')">
+              Must be a valid mobile number
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="Username"
+              formControlName="userName"
+              required
+            />
+            <mat-error
+              *ngIf="firstFormGroup.get('userName')?.hasError('required')"
+            >
+              Username is required
+            </mat-error>
+
+            <mat-error
+              *ngIf="firstFormGroup.get('userName')?.hasError('notUnique')"
+            >
+              Username is not unique
+            </mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="password"
+              formControlName="password"
+              required
+            />
+            <mat-error
+              *ngIf="firstFormGroup.get('password')?.hasError('required')"
+            >
+              Password is required
+            </mat-error>
+            <mat-error
+              *ngIf="firstFormGroup.get('password')?.hasError('pattern')"
+            >
+              Must contain at least one digit and 6 characters
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <div class="button">
+          <!-- <button class="secondary-btn" (click)="reset()">Reset</button> -->
+          <button
+            class="primary-btn"
+            matStepperNext
+            [disabled]="!firstFormGroup.valid"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Membership">
+      <form [formGroup]="secondFormGroup">
+        <h4>Choose Membership Type</h4>
+        <mat-form-field>
+          <mat-label>Membership Type</mat-label>
+          <mat-select
+            formControlName="secondCtrl"
+            (ngModelChange)="onSelectMembershipType($event)"
+          >
+            <mat-option
+              *ngFor="let membership of memberships; trackBy: trackByMembership"
+              [value]="membership.value"
+            >
+              {{ membership.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="btn-group">
+          <button matStepperPrevious class="secondary-btn back-btn">
+            Back
+          </button>
+          <button
+            matStepperNext
+            class="primary-btn"
+            [disabled]="!selectedMembershipType"
+          >
+            Next
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Preview</ng-template>
+      <div class="details" *ngIf="selectedMembershipData">
+        <h2>Membership Details</h2>
+        <p>
+          <span>Membership Duration:</span>
+          {{ selectedMembershipData.duration }} Days
+        </p>
+        <p>
+          <span>Borrow Duration:</span>
+          {{ selectedMembershipData.borrowDuration }} Days
+        </p>
+        <p><span>Fee:</span>Rs.{{ selectedMembershipData.fee }}</p>
+        <p>
+          <span>Late Return Charge:</span>
+          Rs.{{ selectedMembershipData.charge }} Per Day
+        </p>
+        <p>
+          <span>Max Borrow:</span>
+          {{ selectedMembershipData.maxBorrow }} Books
+        </p>
+
+        <!-- Add more details as needed -->
+      </div>
+      <div>
+        <button class="secondary-btn back-btn" matStepperPrevious>Back</button>
+        <button class="primary-btn" (click)="save()">Save</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

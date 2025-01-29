@@ -1,0 +1,138 @@
+<mat-toolbar class="toolbar">
+  <div class="toolbar-content">
+    <div class="title">
+      <h3 class="title"><span>L</span>MS</h3>
+    </div>
+    <div class="logout">
+      <button (click)="logout()" mat-icon-button>
+        <mat-icon class="logout-btn">exit_to_app</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="content" *ngIf="user">
+  <div class="main">
+    <div class="main-left">
+      <div class="welcome">
+        <h2>
+          <span class="greet">Hey,</span> {{ user.name
+          }}<span class="excla">!</span>
+        </h2>
+        <h3>Welcome back to LMS.</h3>
+      </div>
+      <div class="info">
+        <div class="total-book">
+          <p class="info-title">Total</p>
+          <p class="num">{{ user.totalBorrowed }}</p>
+        </div>
+        <div class="current-book">
+          <p class="info-title">Currently Borrowed</p>
+          <p class="num">{{ user.currentBorrowedBooks }}</p>
+        </div>
+        <div class="to-return">
+          <p class="info-title">Returned</p>
+          <p class="num">{{ user.returnedBooks }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="main-right">
+      <div class="details">
+        <div class="basic-details">
+          <p><span class="p-title">Name:</span> {{ user.name }}</p>
+          <p><span class="p-title">Username:</span> {{ user.userName }}</p>
+          <p><span class="p-title">Email:</span> {{ user.email }}</p>
+          <p><span class="p-title">Phone:</span> {{ user.phone }}</p>
+          <p>
+            <span class="p-title">Membership:</span> {{ user.membershipType }}
+          </p>
+        </div>
+        <div class="membership-detail">
+          <p><span class="p-title">Start Date:</span> {{ user.startDate }}</p>
+          <p><span class="p-title">End Date:</span> {{ user.endDate }}</p>
+          <p><span class="p-title">Borrow Limit:</span> {{ user.maxBorrow }}</p>
+          <p>
+            <span class="p-title">Borrow Duration:</span>
+            {{ user.borrowDuration }}
+          </p>
+        </div>
+      </div>
+      <div class="membership-left">
+        <p>
+          <span class="mem-title">My Membership Plan:</span
+          ><span class="days">{{ user.membershipDaysLeft }}</span
+          >Days Left
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="main-bottom">
+    <div class="bottom-left">
+      <div class="bottom-title">
+        <h3>Currently Borrowed Books</h3>
+      </div>
+      <div class="list" *ngFor="let book of user.currentBorrowedList">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title-group class="mat-card">
+              <div class="mat-card-img">
+                <img [src]="book.ImageUrl" />
+              </div>
+              <div class="mat-card-title">
+                <mat-card-title>{{ book.Title }}</mat-card-title>
+                <br />
+                <mat-card-subtitle>{{ book.Author }}</mat-card-subtitle>
+                <p>Due Date: {{ book.returnDueDate | date }}</p>
+              </div>
+            </mat-card-title-group>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+    <div class="bottom-right">
+      <div class="bottom-title">
+        <h3>Returned</h3>
+      </div>
+      <div class="list" *ngFor="let book of user.returnedBooksList">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title-group class="mat-card">
+              <div class="mat-card-img">
+                <img [src]="book.ImageUrl" />
+              </div>
+              <div class="mat-card-title">
+                <mat-card-title>{{ book.Title }}</mat-card-title>
+                <br />
+                <mat-card-subtitle>{{ book.Author }}</mat-card-subtitle>
+                <p>Returned Date: {{ book.returnedDate | date }}</p>
+              </div>
+            </mat-card-title-group>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+    <div class="bottom-last">
+      <div class="bottom-title">
+        <h3>All</h3>
+      </div>
+      <div class="list" *ngFor="let book of user.totalBorrowedBooksList">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title-group class="mat-card">
+              <div class="mat-card-img">
+                <img [src]="book.ImageUrl" />
+              </div>
+              <div class="mat-card-title">
+                <mat-card-title>{{ book.Title }}</mat-card-title>
+                <br />
+                <mat-card-subtitle>{{ book.Author }}</mat-card-subtitle>
+              </div>
+            </mat-card-title-group>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- {{ user.returnedBooksList | json }} -->

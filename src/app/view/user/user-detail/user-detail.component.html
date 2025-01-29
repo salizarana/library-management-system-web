@@ -1,0 +1,36 @@
+<!-- {{ formObject | json }} -->
+
+<!-- <div class="main-view">
+  <div class="main-top">
+    <div class="profile">
+      <img lcass="img" src="../../../../assets/img/user.png" />
+    </div>
+    <div class="info"></div>
+    <div class="borrow-info"></div>
+  </div>
+  <div class="main-bottom"></div>
+</div> -->
+
+<div class="container">
+  <div class="profile">
+    <img src="../../../../assets/img/user.png" class="profile-pic" />
+    <h3>{{ formObject.userName }}</h3>
+    <p>{{ formObject.emailAddress }}</p>
+  </div>
+  <div class="details">
+    <p><span>Name:</span> {{ formObject.name }}</p>
+    <p><span>Phone:</span> {{ formObject.phone }}</p>
+    <p><span>Membership:</span> {{ formObject.membershipType }}</p>
+    <p><span>Start Date:</span> {{ formObject.startDate }}</p>
+    <p><span>End Date</span> {{ formObject.endDate }}</p>
+    <p><span>Total Books Borrowed:</span> {{ formObject.totalBorrowed }}</p>
+    <p>
+      <span>Currently Borrowed:</span> {{ formObject.currentBorrowedBooks }}
+    </p>
+    <p><span>Available Borrow:</span>{{ formObject.availableBorrow }}</p>
+    <p><span>Returned Books:</span>{{ formObject.returnedBooks }}</p>
+    <p><span>Borrow Limit:</span>{{ formObject.maxBorrow }}</p>
+    <p><span>Membership Days Left:</span>{{ formObject.membershipDaysLeft }}</p>
+  </div>
+  <button mat-button class="secondary-btn" [mat-dialog-close]>Close</button>
+</div>

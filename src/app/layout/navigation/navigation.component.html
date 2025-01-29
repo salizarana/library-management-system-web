@@ -1,0 +1,39 @@
+<p>
+  <mat-toolbar class="navbar">
+    <button
+      (click)="drawer.toggle()"
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="title" (click)="dashboard()">Library Management System</div>
+
+    <button (click)="logout()" mat-icon-button>
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-list role="list" *ngFor="let item of navigationList">
+      <div class="navigation">
+        <a routerLink="{{ item.url }}" routerLinkActive="active">
+          <mat-list-item role="listitem">
+            <div class="nav">
+              <div class="icon">
+                <fa-icon [icon]="getIcon(item.icon)"></fa-icon>
+              </div>
+              <div class="view">{{ item.name }}</div>
+            </div>
+          </mat-list-item>
+        </a>
+      </div>
+    </mat-list>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

@@ -1,0 +1,71 @@
+.title{
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.mat-horizontal-stepper {
+  width: 80%;
+  margin: auto; 
+}
+
+.mat-step-header {
+  background-color: #f0f0f0; 
+  border-radius: 8px;
+}
+
+.mat-step-label {
+  color: #333; 
+}
+
+.mat-step-header-selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.mat-step-header-completed {
+  background-color: #28a745; 
+  color: #fff;
+}
+
+.mat-step-header:hover {
+  background-color: #e0e0e0; 
+  cursor: pointer;
+}
+
+.mat-step-content {
+  padding: 20px;
+}
+
+.mat-form-field {
+  width: 100%; 
+}
+
+.mat-step-optional {
+  color: #999; 
+}
+
+.back-btn{
+  margin-right: 10px;
+}
+
+.details {
+  display: flex;
+  border-top: 1px solid #ccc; 
+  display: inline-block;
+  align-items: center;
+}
+
+.details p {
+margin: 10px 5px; 
+}
+
+.details p span {
+font-weight: bold; 
+display: inline-block; 
+width: 170px;
+}
+
+.details p:not(:last-child) {
+border-bottom: 1px solid #ccc; 
+}

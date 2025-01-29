@@ -1,0 +1,49 @@
+<div class="invoice">
+  <div class="invoice-header">
+    <h1 class="logo"><span>L</span>MS</h1>
+    <h1 class="invoice-title">Invoice</h1>
+  </div>
+  <div class="invoice-details" *ngIf="data.selectedItem">
+    <p class="date">
+      Date: {{ formObject.returnedDate | date : "yyyy-MM-dd HH:mm:ss" }}
+    </p>
+    <table>
+      <tr>
+        <th>Borrow ID</th>
+        <td>{{ data.selectedItem.borrowId }}</td>
+      </tr>
+      <tr>
+        <th>Customer Name</th>
+        <td>{{ data.selectedItem.name }}</td>
+      </tr>
+      <tr>
+        <th>Username</th>
+        <td>{{ data.selectedItem.userName }}</td>
+      </tr>
+      <tr>
+        <th>Book</th>
+        <td>{{ data.selectedItem.title }}</td>
+      </tr>
+      <tr>
+        <th>Borrow Date</th>
+        <td>{{ data.selectedItem.borrowedDate | date }}</td>
+      </tr>
+      <tr>
+        <th>Return Date</th>
+        <td>{{ formObject.returnedDate | date }}</td>
+      </tr>
+      <tr>
+        <th>Return Due Date</th>
+        <td>{{ data.selectedItem.returnDueDate | date }}</td>
+      </tr>
+    </table>
+    <div class="invoice-total">
+      <p><span>Total:</span> Rs {{ charge }}</p>
+    </div>
+  </div>
+</div>
+
+<button (click)="save()" class="primary-btn">Save</button>
+<button (click)="print()" class="tertiary-btn">Print</button>
+<button [mat-dialog-close] class="secondary-btn">close</button>
+<div class="btn-group"></div>

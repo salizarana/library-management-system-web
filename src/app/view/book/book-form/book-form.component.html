@@ -1,0 +1,86 @@
+<h3>Add New Book</h3>
+
+<form [formGroup]="form" (ngSubmit)="save()">
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Book</mat-label>
+      <input matInput placeholder="Book" formControlName="title" required />
+      <mat-error
+        *ngIf="form.get('title')?.invalid && form.get('title')?.touched"
+      >
+        Title is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Author</mat-label>
+      <input matInput placeholder="Author" formControlName="author" required />
+      <mat-error
+        *ngIf="form.get('author')?.invalid && form.get('author')?.touched"
+      >
+        Author is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Genre</mat-label>
+      <input matInput placeholder="Genre" formControlName="genre" required />
+      <mat-error
+        *ngIf="form.get('genre')?.invalid && form.get('genre')?.touched"
+      >
+        Genre is required
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Quantity</mat-label>
+      <input
+        matInput
+        placeholder="Quantity"
+        formControlName="quantity"
+        required
+        pattern="^[0-9]*$"
+      />
+      <mat-error
+        *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched"
+      >
+        Quantity is required and must be a number
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Available Quantity</mat-label>
+      <input
+        matInput
+        placeholder="Available Quantity"
+        formControlName="availableQuantity"
+        required
+        pattern="^[0-9]*$"
+        [max]="form.get('quantity')?.value"
+      />
+      <mat-error *ngIf="form.get('availableQuantity')?.invalid">
+        <span *ngIf="form.get('availableQuantity')?.touched"
+          >Available Quantity is required</span
+        >
+        <span *ngIf="form.get('availableQuantity')?.errors?.['invalidQuantity']"
+          >Available Quantity cannot be greater than Quantity</span
+        >
+      </mat-error>
+    </mat-form-field>
+  </p>
+</form>
+<div class="btn">
+  <button
+    class="primary-btn"
+    type="submit"
+    (click)="save()"
+    [disabled]="form.invalid"
+  >
+    Save
+  </button>
+  <button class="secondary-btn" type="button" [mat-dialog-close]>Close</button>
+</div>

@@ -1,0 +1,45 @@
+<h3>Issue Book</h3>
+<form>
+  <!-- <p>
+    <mat-form-field appearance="fill">
+      <mat-label>User</mat-label>
+      <mat-select
+        [(value)]="formObject.userId"
+        placeholder="Select User"
+        name="userId"
+      >
+        <mat-option *ngFor="let user of userList" [value]="user.userId">
+          {{ user.userName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p> -->
+  <mat-form-field appearance="fill">
+    <mat-label>User</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="userControl"
+      [matAutocomplete]="auto"
+      placeholder="Select User"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayUserName"
+      (optionSelected)="onUserSelected($event)"
+    >
+      <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+        {{ user.userName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<!-- {{ formObject | json }} -->
+
+<div class="btn">
+  <button class="primary-btn" (click)="save()" [disabled]="saveDisabled">
+    Save
+  </button>
+  <button [mat-dialog-close] class="secondary-btn">Close</button>
+</div>

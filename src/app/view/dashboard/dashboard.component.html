@@ -1,0 +1,44 @@
+<div class="main" *ngFor="let item of dashboardList">
+  <h1>Dashboard</h1>
+  <div class="top">
+    <div class="num">
+      <h3>Total Customers</h3>
+      <p>{{ item.totalcustomers }}</p>
+    </div>
+    <div class="num">
+      <h3>Books Borrowed</h3>
+      <p>{{ item.totalBorrowed }}</p>
+    </div>
+    <div class="num">
+      <h3>Overdue Books</h3>
+      <p>{{ item.overdue }}</p>
+    </div>
+    <div class="num">
+      <h3>Currently Issued</h3>
+      <p>{{ item.currentlyBorrowed }}</p>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="top">
+      <div class="num">
+        <h3>Premium Customers</h3>
+        <p>{{ item.premiumCustomers }}</p>
+      </div>
+      <div class="num">
+        <h3>Standard Customers</h3>
+        <p>{{ item.standardCustomers }}</p>
+      </div>
+      <div class="num">
+        <h3>Returned Books</h3>
+        <p>{{ item.returned }}</p>
+      </div>
+      <div class="num">
+        <h3>Total Earned</h3>
+        <p>Rs {{ item.totalPayment }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="chart-container">
+  <canvas id="MyChart">{{ chart }}</canvas>
+</div>
