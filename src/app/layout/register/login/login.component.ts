@@ -23,8 +23,24 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
   hide: boolean = true;
-  adminList: any;
-  userList: any;
+  adminList: any[] = [
+    {
+      userId: 1,
+      userName: 'admin',
+      password: 'admin123',
+      userType: 'admin',
+    },
+  ];
+
+  userList: any[] = [
+    {
+      userId: 2,
+      userName: 'user',
+      password: 'user123',
+      userType: 'user',
+    },
+  ];
+
   formObject: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
